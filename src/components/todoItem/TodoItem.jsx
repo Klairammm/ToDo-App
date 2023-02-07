@@ -3,21 +3,18 @@ import { useContext } from "react";
 import { ApplicationCtx } from "../../store/state";
 
 const TodoItem = ({ data }) => {
-  const { dispatch } = useContext(ApplicationCtx);
+  const { state, dispatch } = useContext(ApplicationCtx);
 
   const onHandleClick = (e) => {
     dispatch({
-      type: "REMOVE_TODO_ITEM_COMPLETED_FROM_LIST",
-      payload: data.content,
+      type: "REMOVE_TODO",
+      payload: data.id,
     });
   };
 
   return (
-    <div
-      className={`${style.TodoItem} ${!data.status && style.satusDone}`}
-      onclick={onHandleClick}
-    >
-      <p>{data.content}</p>
+    <div className={`${style.TodoItem} ${data.status && style.statusDone}`}>
+      <p onclick={onHandleClick}>{data.content}</p>
     </div>
   );
 };

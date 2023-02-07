@@ -10,7 +10,7 @@ const Navbar = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     dispatch({
-      action: "ADD_TODO_ITEM_TO_LIST",
+      action: "ADD_TODO",
       payload: {
         id: Math.floor(Math.random() * 100000),
         content: input,
@@ -21,12 +21,13 @@ const Navbar = () => {
   };
   return (
     <div className={style.Navbar}>
-      <form onSubmit={() => {}}>
+      <form autoComplete="off" onSubmit={onFormSubmit}>
         <input
           type="text"
           value={input}
           onInput={(e) => setInput(() => e.target.value)}
           placeholder="Aggiungi.."
+          required
         />
       </form>
     </div>
